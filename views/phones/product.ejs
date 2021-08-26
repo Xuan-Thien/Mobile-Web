@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- header -->
+<%- include("../partials/header.ejs") %>
+
+  <body>
+    <!-- navbar -->
+    <%- include("../partials/nav.ejs") %>
+
+
+
+
+      <!-- product info -->
+      <section class="single-product">
+        <div class="section-center single-product-center">
+          <img class="single-product-img img" src=<%=phone.image %> alt="" />
+          <article class="single-product-info">
+            <div>
+              <h2 class="single-product-title">
+                <%= phone.name %>
+              </h2>
+              <p class="single-product-company text-slanted">
+                <%= phone.category %>
+              </p>
+              <p class="single-product-price">$ <%= phone.price %>
+              </p>
+              <div class="single-product-colors"></div>
+              <p class="single-product-desc">
+                <%= phone.description %>
+              </p>
+              <button class="addToCartBtn btn" data-id="id">
+                add to cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+  </body>
+
+</html>

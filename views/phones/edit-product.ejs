@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- header -->
+<%- include("../partials/header.ejs") %>
+
+
+  <body>
+    <!-- navbar -->
+    <%- include("../partials/nav.ejs") %>
+
+
+    <form class="container mt-5 card p-5" id="myForm" style="width: 75vw;"  method="POST">
+      <div class="row mb-3 mx-auto">
+        <h3>Edit Phone</h3>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <div class="mb-3">
+            <label for="product-name" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="product-name" value="<%= phone.name %> placeholder="" autocomplete="off" required>
+          </div>
+          <div class="mb-3">
+            <label for="product-description" class="form-label">Description</label>
+            <textarea name="product-description" class="form-control" id="product-description" cols="30" rows="5">
+              <%= phone.description %>
+            </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="product-category" class="form-label">Category</label>
+            <select class="form-select" name="product-category" id="product-category">
+              <option value="iPhone" selected>iPhone</option>
+                  <option value="Samsung">Samsung</option>
+                  <option value="Xiaomi">Xiaomi</option>
+                  <option value="OPPO">OPPO</option>
+            </select>
+          </div>
+          <div class="mb-3 row">
+            <div class="col-auto">
+              <label for="product-price" class="form-label">Price</label>
+              <input type="number" class="form-control" id="product-price" value="<%= phone.price %>" placeholder="0" required>
+            </div>
+            <div class="col-auto">
+              <label for="product-units" class="form-label">Units</label>
+              <input type="number" class="form-control" id="product-units" value="<%= phone.units %>" placeholder="0" required>
+            </div>
+          </div>
+          
+        </div>
+    
+        <div class="col-5">
+          <div class="mb-3">
+            <div class="image-container" style="background-color: inherit">
+              <img class="image-phone"  id="image" width="100%" style="background-color: inherit" src=<%= phone.image %>  >
+
+            </div>
+          </div>
+          <div class="mb-3 text-center">
+            <button class="btn btn-primary" id="file-button">Choose Image</button>
+          </div>
+        </div>
+      </div>
+       
+      <div class="m-3 text-center">
+        <button type="submit" class="btn btn-primary">Update product now</button>
+      </div>
+    </form>
+  
+    <input id="inputElement" type="file" name="product-image" accept="image/*" style="display:none" />
+
+    <!-- fjalg -->
+      <!-- <form class="form form-section" id="myForm" method="POST">
+        <h1 class="title">Edit Product</h1>
+        <div class="form-info">
+          <div class="item-info">
+            <div class="input-block">
+              <label for="product-name">Product Name</label>
+              <input id="product-name" class="product-name" value="<%= phone.name %>" type="text" autocomplete="off"
+                required>
+            </div>
+            <div class="input-block">
+              <label for="product-description">Description</label>
+              <textarea id="product-description" cols="30" rows="5">
+                <%= phone.description %>
+            </textarea>
+            </div>
+            <div class="input-block">
+              <label for="product-category">Category</label>
+              <select id="product-category" class="custom-select">
+                <option value="iPhone" selected>iPhone</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="OPPO">OPPO</option>
+              </select>
+            </div>
+            <div class="input-block price-units">
+              <div class="input-price">
+                <label for="product-price">Price</label>
+                <input id="product-price" value="<%= phone.price %>" type="number" required>
+              </div>
+              <div class="input-units">
+                <label for="product-units">Units</label>
+                <input id="product-units" value="<%= phone.units %>" type="number" required>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="item-image" style="background-color: inherit">
+            <div class="image-container" style="background-color: inherit">
+
+              <img class="image-phone" src=<%=phone.image %> alt="" style="background-color: inherit" >
+            </div>
+
+            <button class="button" id="file-button">Choose Image</button>
+
+            <input id="inputElement" type="file"" accept=" image/*" style="display:none" />
+          </div>
+        </div>
+        <button type="submit" class="submit button">Update product now</button>
+      </form> -->
+
+      <!-- Jquery -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+      <script>
+
+        // add value for select
+        document.getElementById("product-category").value = "<%= phone.category %>";
+
+        // click button for load image
+        const imageContainer = document.querySelector('.image-container');
+        const fileBtn = document.getElementById('file-button');
+        const imageElement = document.querySelector('.image-phone');
+        console.log(imageElement);
+        fileBtn.onclick = (event) => {
+          inputElement.click();
+          event.preventDefault();
+
+        }
+
+        inputElement.addEventListener("change", handleFiles, false);
+
+        function handleFiles() {
+          const fileList = this.files; /* now you can work with the file list */
+          console.log(fileList);
+
+          if (fileList.length > 0) {
+            imageElement.src = URL.createObjectURL(fileList[0]);
+
+            imageElement.onload = function () {
+              URL.revokeObjectURL(imageElement.src) // free memory
+            }
+          }
+
+        }
+
+        // submit
+        const productName = document.getElementById('product-name');
+        const description = document.getElementById('product-description');
+
+        const category = document.getElementById('product-category');
+
+        const price = document.getElementById('product-price');
+
+        const units = document.getElementById('product-units');
+        const myForm = document.getElementById('myForm');
+        console.log([productName, description, category, price, units, myForm]);
+        myForm.addEventListener('submit', (event) => {
+
+          event.preventDefault();
+
+          const formData = new FormData();
+          formData.append('name', productName.value)
+          formData.append('description', description.value)
+          formData.append('category', category.value)
+          formData.append('price', price.value)
+          formData.append('units', units.value)
+          if (inputElement.files.length > 0) {
+            formData.append('image', inputElement.files[0])
+          }
+          console.log(formData)
+          fetch('/edit/<%= phone._id %>', {
+            method: 'POST',
+            body: formData,
+          })
+            .then(function (response) {
+              // console.log('hello')
+
+              location.href = response.url;
+              // console.log(response.url);
+            })
+            .catch(function (error) {
+              console.error(error);
+            })
+        })
+      </script>
+
+
+  </body>
+
+</html>

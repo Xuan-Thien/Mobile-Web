@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- header -->
+<%- include("../partials/header.ejs") %>
+<body>
+  <!-- navbar -->
+  <%- include("../partials/nav.ejs") %>
+
+  <form class="container mt-5 card p-5" id="myForm" style="width: 75vw;">
+    <div class="row mb-3 mx-auto">
+      <h3>Add Phone</h3>
+    </div>
+    <div class="row">
+      <div class="col-7">
+        <div class="mb-3">
+          <label for="product-name" class="form-label">Product Name</label>
+          <input type="text" class="form-control" id="product-name" placeholder="" autocomplete="off" required>
+        </div>
+        <div class="mb-3">
+          <label for="product-description" class="form-label">Description</label>
+          <textarea name="product-description" class="form-control" id="product-description" cols="30" rows="5"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="product-category" class="form-label">Category</label>
+          <select class="form-select" name="product-category" id="product-category">
+            <option value="iPhone" selected>iPhone</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi</option>
+                <option value="OPPO">OPPO</option>
+          </select>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-auto">
+            <label for="product-price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="product-price" placeholder="0" required>
+          </div>
+          <div class="col-auto">
+            <label for="product-units" class="form-label">Units</label>
+            <input type="number" class="form-control" id="product-units" placeholder="0" required>
+          </div>
+        </div>
+        
+      </div>
+  
+      <div class="col-5">
+        <div class="mb-3">
+          <div class="image-container">
+            <i class="fa fa-cloud-upload-alt"></i>
+            <img src="" alt="your image" id="image" style="display: none;">
+          </div>
+        </div>
+        <div class="mb-3 text-center">
+          <button class="btn btn-primary" id="file-button">Choose Image</button>
+        </div>
+      </div>
+    </div>
+     
+    <div class="m-3 mx-auto">
+      <button type="submit" class="btn btn-primary">Add product now</button>
+    </div>
+  </form>
+
+  <input id="inputElement" type="file" name="product-image" accept="image/*" style="display:none" />
+    
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"></script>
+    <script src="src/phone/addProduct.js"></script>
+</body>
+
+</html>

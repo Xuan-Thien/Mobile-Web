@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- header -->
+<%- include("../partials/header.ejs") %>
+
+  <body>
+    <!-- navbar -->
+    <%- include("../partials/nav.ejs") %>
+      <!-- hero -->
+      <section class="hero">
+        <div class="hero-container">
+          <h2 class="text-slanted">
+            What’s the best way to buy an iPhone?
+          </h2>
+          <h3>There are lots of great options for purchasing an iPhone.
+            Whether you buy from a retailer, a carrier, or online, finding the best option has never been so easy.
+          </h3>
+          <a href="/products" class="hero-btn">
+            show now
+          </a>
+        </div>
+      </section>
+
+      <!-- featured products -->
+      <section class="section featured">
+        <div class="title">
+          <h2><span>/</span> featured</h2>
+        </div>
+        <div class="featured-center section-center">
+
+          <% if (phones.length> 0) { %>
+            <% phones.forEach((phone)=> { %>
+              <article class="product">
+                <div class="product-container">
+                  <img class="product-img img" src= <%= phone.image %>  alt=""  />
+
+                  <div class="product-icons">
+                    <a href="/<%=phone._id%>" class="product-icon">
+                      <i class="fas fa-search"></i>
+                    </a>
+                    <button class="product-cart-btn product-icon" data-id= <%= phone._id %> >
+                      <i class="fas fa-shopping-cart"></i>
+                    </button>
+                  </div>
+                </div>
+                <footer>
+                  <p class="product-name">
+                    <%= phone.name %>
+                  </p>
+                  <h4 class="product-price">
+                    <%= phone.price %> $
+                  </h4>
+                </footer>
+              </article>
+              <% }) %>
+
+          <% } else { %>
+            <p>There are no phone to display...</p>
+          <% } %>
+
+
+
+        </div>
+        
+
+        </div>
+        <a href="/products" class="btn">
+          all products
+        </a>
+      </section>
+      
+      
+
+      <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+  </body>
+
+</html>
